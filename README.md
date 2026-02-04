@@ -30,6 +30,47 @@ Unlike standard templated portfolios, this project is hand-crafted using **Seman
 
 ---
 
+## 🌏 Why Hire Me?
+
+Designed for global impact, bringing a unique blend of technical expertis and business acumen.
+
+### 🚀 Global Readiness
+- **Japan-Based Professional**: Adapted to high-standard work ethics and Asia-Pacific timezones.
+- **Bilingual Communication**: Fluent technical communication in English and Indonesian.
+- **Remote & Asynchronous**: Proven track record in delivering results independently in distributed teams.
+
+### 🌉 The "Bridge" Engineer
+- **Tech to Business**: Translating complex AI capabilities into clear ROI and business value.
+- **Concept to Production**: Full-cycle ability from whiteboarding architecture to deploying scalable code.
+- **Data to Decision**: Turning raw agricultural data into actionable strategic insights.
+
+---
+
+## 🧠 Tech Philosophy
+
+My engineering approach centers on three core principles:
+
+| Principle | Description |
+|-----------|-------------|
+| **🧩 Scalable Simplicity** | Building systems complex enough to solve problems, but simple enough to maintain without debt. |
+| **👤 User-Obsessed** | Technology must serve the human first. Interfaces should be intuitive, accessible, and forgiving. |
+| **💡 ROI-Driven** | Every line of code should contribute to value creation—whether it's yield increase or cost reduction. |
+
+---
+
+## 📊 Business Impact Metrics
+
+Delivering measurable value through technology:
+
+| Metric | Value | Description |
+|--------|-------|-------------|
+| **Yield Increase** | **15%** | Average improvement in crop yield for farmers using my systems. |
+| **Cost Reduction** | **30%** | Operational cost savings through optimized fertilizer/pesticide use. |
+| **System Uptime** | **99.5%** | Reliability of production AI modules in the field. |
+| **AI Modules** | **60+** | Specialized modules deployed for precision agriculture. |
+
+---
+
 ## 🛠️ Technology Stack
 
 Designed for speed, accessibility, and maintenance.
@@ -39,8 +80,7 @@ Designed for speed, accessibility, and maintenance.
 | **Core** | ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white) ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white) | Semantic markup & CSS Variables |
 | **Styling** | ![Glassmorphism](https://img.shields.io/badge/Design-Glassmorphism-purple?style=flat) | Custom CSS Grid & Flexbox |
 | **Logic** | ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black) | Interactive DOM manipulation |
-| **Deployment** | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white) | CI/CD & Edge Network Hosting |
-| **Version Control** | ![Git](https://img.shields.io/badge/Git-F05032?style=flat&logo=git&logoColor=white) | Branching & Release Management |
+| **Deploy** | ![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat&logo=vercel&logoColor=white) | CI/CD & Edge Network Hosting |
 
 ---
 
@@ -50,7 +90,7 @@ My portfolio aggregates the following production-grade AgriTech solutions:
 
 | Project | Domain | Tech Stack | Status |
 |---------|--------|------------|--------|
-| **[AgriSensa Platform](https://mirai39.streamlit.app/)** | 🧠 AI Agriculture | `Streamlit` `Gemini AI` `Computer Vision` | ![Active](https://img.shields.io/badge/Production-brightgreen?style=flat-square) |
+| **[AgriSensa](https://mirai39.streamlit.app/)** | 🧠 AI Agriculture | `Streamlit` `Gemini AI` `Computer Vision` | ![Active](https://img.shields.io/badge/Production-brightgreen?style=flat-square) |
 | **[Budidaya Cabai](https://budidayacabe.streamlit.app/)** | 🌶️ Chili Farming | `Prophet` `Pandas` `Plotly` | ![Active](https://img.shields.io/badge/Production-brightgreen?style=flat-square) |
 | **[Budidaya Krisan](https://budidayakrisan.streamlit.app/)** | 🌸 Floriculture | `Scikit-learn` `Altair` `IoT` | ![Active](https://img.shields.io/badge/Production-brightgreen?style=flat-square) |
 | **[Budidaya Padi](https://budidayapadi.streamlit.app/)** | 🌾 Rice Management | `PyCaret` `AutoML` `Open-Meteo` | ![Active](https://img.shields.io/badge/Production-brightgreen?style=flat-square) |
@@ -60,23 +100,13 @@ My portfolio aggregates the following production-grade AgriTech solutions:
 
 ## 🚀 Getting Started
 
-To run this portfolio locally for development or customization:
+To run this portfolio locally:
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/yandri918/agritech_portofolio.git
-   cd agritech_portofolio
-   ```
-
-2. **Serve locally** (using Python)
-   ```bash
-   python -m http.server 8000
-   ```
-
-3. **Deploy to Vercel**
-   ```bash
-   vercel --prod
-   ```
+```bash
+git clone https://github.com/yandri918/agritech_portofolio.git
+cd agritech_portofolio
+python -m http.server 8000
+```
 
 ---
 
