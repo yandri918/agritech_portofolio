@@ -1,4 +1,10 @@
 {
+    "rewrites": [
+        {
+            "source": "/jp",
+            "destination": "/index_jp.html"
+        }
+    ],
     "headers": [
         {
             "source": "/(.*)",
