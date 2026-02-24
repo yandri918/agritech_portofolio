@@ -4,792 +4,1379 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Andriyanto – AgriTech AI Engineer Portfolio</title>
     <meta name="description"
-        content="AgriTech Portfolio | AI-Powered Agricultural Solutions | Smart Farming Applications">
-    <title>AgriTech Portfolio - Andriyanto, BScE, S.E</title>
+        content="AI Product Engineer specializing in AgriTech. 5 production apps, 60+ AI modules, 15% yield increase for farmers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap"
         rel="stylesheet">
     <style>
         :root {
-            --primary: #10b981;
-            --primary-dark: #059669;
-            --secondary: #3b82f6;
-            --dark: #0f172a;
-            --gray-50: #f8fafc;
-            --gray-100: #f1f5f9;
-            --gray-600: #475569;
-            --gray-700: #334155;
-            --gray-800: #1e293b;
+            --green: #10b981;
+            --green-dark: #059669;
+            --green-glow: rgba(16, 185, 129, .25);
+            --blue: #60a5fa;
+            --purple: #a78bfa;
+            --bg: #020917;
+            --bg2: #0a1628;
+            --glass: rgba(255, 255, 255, .04);
+            --glass-border: rgba(255, 255, 255, .08);
+            --text: #e2e8f0;
+            --muted: #64748b;
+            --card-hover: rgba(16, 185, 129, .06);
+            --radius: 16px;
         }
 
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
         }
 
         body {
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: #1e293b;
-            background: var(--gray-50);
+            background: var(--bg);
+            color: var(--text);
+            overflow-x: hidden
         }
 
+        /* ── Canvas ── */
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none
+        }
+
+        /* ── Scrollbar ── */
+        ::-webkit-scrollbar {
+            width: 4px
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg)
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--green-dark);
+            border-radius: 4px
+        }
+
+        /* ── Nav ── */
         nav {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            background: rgba(2, 9, 23, .8);
+            border-bottom: 1px solid var(--glass-border);
+            transition: .3s
         }
 
-        .nav-container {
+        .nav-inner {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
+            margin: auto;
+            padding: .9rem 2rem;
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: space-between
         }
 
         .logo {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
+            font-weight: 800;
+            font-size: 1.1rem;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+            align-items: center
         }
 
         .nav-links a {
-            color: var(--gray-700);
+            color: var(--muted);
             text-decoration: none;
+            font-size: .875rem;
             font-weight: 500;
-            transition: color 0.3s;
+            transition: .2s;
+            position: relative
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--text)
         }
 
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--green);
+            transition: .3s;
+            border-radius: 2px
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%
+        }
+
+        .lang-btn {
+            padding: .4rem .9rem;
+            border: 1px solid var(--green);
+            border-radius: 8px;
+            color: var(--green);
+            text-decoration: none;
+            font-size: .8rem;
+            font-weight: 600;
+            transition: .2s
+        }
+
+        .lang-btn:hover {
+            background: var(--green);
+            color: #000
+        }
+
+        /* ── Hero ── */
         .hero {
-            padding: 8rem 2rem 4rem;
-            background: linear-gradient(135deg, var(--dark) 0%, #1e293b 100%);
-            color: white;
+            position: relative;
+            z-index: 1;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
+            padding: 6rem 2rem 4rem
         }
 
-        .hero h1 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            background: linear-gradient(to right, #34d399, #60a5fa);
+        .hero-tag {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .4rem 1rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            font-size: .8rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            backdrop-filter: blur(10px);
+            background: var(--glass)
+        }
+
+        .hero-tag span {
+            width: 8px;
+            height: 8px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        h1.headline {
+            font-size: clamp(2.5rem, 6vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 1.5rem
+        }
+
+        .grad-text {
+            background: linear-gradient(135deg, var(--green) 0%, var(--blue) 50%, var(--purple) 100%);
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-size: 200%;
+            animation: gradShift 4s ease infinite
         }
 
-        .hero-subtitle {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: #94a3b8;
-        }
-
-        .hero-description {
-            max-width: 800px;
-            margin: 0 auto 2rem;
+        .hero-sub {
             font-size: 1.1rem;
-            color: #cbd5e1;
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7
         }
 
-        .badge {
-            display: inline-block;
-            padding: 0.5rem 1rem;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid var(--primary);
-            border-radius: 20px;
-            color: var(--primary);
-            font-size: 0.9rem;
+        #typed-text {
+            color: var(--green);
+            border-right: 2px solid var(--green);
+            padding-right: 2px;
+            animation: blink .7s infinite
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 3rem
+        }
+
+        .btn-primary {
+            padding: .8rem 2rem;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: #000;
+            font-weight: 700;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: .3s;
+            box-shadow: 0 0 30px var(--green-glow)
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 50px var(--green-glow)
+        }
+
+        .btn-ghost {
+            padding: .8rem 2rem;
+            border: 1px solid var(--glass-border);
+            color: var(--text);
             font-weight: 600;
-            margin: 0.25rem;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: .3s;
+            backdrop-filter: blur(10px)
+        }
+
+        .btn-ghost:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: translateY(-2px)
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 3rem;
+            justify-content: center;
+            flex-wrap: wrap
+        }
+
+        .h-stat {
+            text-align: center
+        }
+
+        .h-stat .num {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent
+        }
+
+        .h-stat .lbl {
+            font-size: .75rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: .1em
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: .5rem;
+            color: var(--muted);
+            font-size: .75rem;
+            animation: bounce 2s infinite
+        }
+
+        .scroll-hint svg {
+            opacity: .5
+        }
+
+        /* ── Section ── */
+        section {
+            position: relative;
+            z-index: 1;
+            padding: 6rem 2rem
         }
 
         .container {
             max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
+            margin: auto
         }
 
-        .section {
-            margin-bottom: 4rem;
+        .section-tag {
+            display: inline-block;
+            padding: .3rem .8rem;
+            background: rgba(16, 185, 129, .1);
+            border: 1px solid rgba(16, 185, 129, .2);
+            border-radius: 100px;
+            font-size: .75rem;
+            color: var(--green);
+            font-weight: 600;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            margin-bottom: 1rem
         }
 
         .section-title {
-            font-family: 'Poppins', sans-serif;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-            color: var(--gray-800);
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            font-weight: 800;
+            margin-bottom: 1rem
         }
 
-        .section-subtitle {
-            color: var(--gray-600);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
+        .section-desc {
+            color: var(--muted);
+            max-width: 600px;
+            line-height: 1.7;
+            margin-bottom: 3rem
         }
 
-        .grid {
+        /* ── About ── */
+        .about-grid {
             display: grid;
-            gap: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start
         }
 
-        .grid-4 {
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        }
-
-        .grid-2 {
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        }
-
-        .card {
-            background: white;
-            padding: 2rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .project-card {
-            border-left: 4px solid var(--primary);
-        }
-
-        .project-header {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .project-icon {
-            font-size: 2.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--gray-800);
-        }
-
-        .project-description {
-            color: var(--gray-600);
-            margin-bottom: 1rem;
+        .about-text p {
+            color: var(--muted);
             line-height: 1.8;
+            margin-bottom: 1rem
         }
 
-        .tech-tags {
+        .about-text blockquote {
+            border-left: 3px solid var(--green);
+            padding-left: 1rem;
+            color: var(--text);
+            font-style: italic;
+            margin: 1.5rem 0;
+            font-size: 1.05rem
+        }
+
+        .skill-list {
             display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            flex-direction: column;
+            gap: 1rem
         }
 
-        .tech-tag {
-            padding: 0.25rem 0.75rem;
-            background: var(--gray-100);
-            border-radius: 12px;
-            font-size: 0.85rem;
-            color: var(--gray-700);
-        }
-
-        .project-links {
+        .skill-item label {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            justify-content: space-between;
+            font-size: .85rem;
+            margin-bottom: .4rem;
+            color: var(--text);
+            font-weight: 500
         }
 
-        .btn {
-            padding: 0.75rem 1.5rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            cursor: pointer;
-            font-size: 0.9rem;
+        .skill-item label span {
+            color: var(--green)
         }
 
-        .btn-primary {
-            background: var(--primary);
-            color: white;
+        .skill-bar {
+            height: 6px;
+            background: var(--glass-border);
+            border-radius: 6px;
+            overflow: hidden
         }
 
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--green), var(--blue));
+            border-radius: 6px;
+            width: 0;
+            transition: width 1.2s cubic-bezier(.4, 0, .2, 1)
         }
 
-        .btn-secondary {
-            background: white;
-            color: var(--primary);
-            border: 2px solid var(--primary);
+        /* ── Impact Stats ── */
+        .stats-bg {
+            background: linear-gradient(135deg, rgba(16, 185, 129, .05), rgba(96, 165, 250, .05));
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 4rem 3rem;
+            text-align: center
         }
 
-        .btn-secondary:hover {
-            background: var(--primary);
-            color: white;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem
         }
 
         .stat-card {
-            text-align: center;
-            border-left: 4px solid var(--primary);
+            padding: 2rem 1rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--radius);
+            transition: .3s
         }
 
-        .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--primary);
-            font-family: 'Poppins', sans-serif;
+        .stat-card:hover {
+            border-color: rgba(16, 185, 129, .3);
+            transform: translateY(-4px);
+            background: var(--card-hover)
         }
 
-        .stat-label {
-            color: var(--gray-600);
-            font-size: 1rem;
+        .stat-num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--green), var(--blue));
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: block
         }
 
-        .feature-list {
-            list-style: none;
-            padding: 0;
+        .stat-lbl {
+            font-size: .8rem;
+            color: var(--muted);
+            margin-top: .5rem;
+            text-transform: uppercase;
+            letter-spacing: .05em
         }
 
-        .feature-list li {
-            padding: 0.5rem 0;
-            color: var(--gray-700);
-        }
-
-        .feature-list li:before {
-            content: "✓ ";
-            color: var(--primary);
-            font-weight: bold;
-            margin-right: 0.5rem;
-        }
-
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-links {
+        /* ── Projects ── */
+        .filter-tabs {
             display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin: 2rem 0;
+            gap: .75rem;
             flex-wrap: wrap;
+            margin-bottom: 2.5rem
         }
 
-        .footer-links a {
-            color: white;
+        .filter-tab {
+            padding: .5rem 1.2rem;
+            border: 1px solid var(--glass-border);
+            border-radius: 100px;
+            color: var(--muted);
+            font-size: .85rem;
+            cursor: pointer;
+            transition: .2s;
+            background: none;
+            font-family: inherit
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            border-color: var(--green);
+            color: var(--green);
+            background: rgba(16, 185, 129, .08)
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 1.5rem
+        }
+
+        .project-card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.75rem;
+            transition: .4s;
+            position: relative;
+            overflow: hidden;
+            cursor: default
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--green), var(--blue), var(--purple));
+            transform: scaleX(0);
+            transition: .3s;
+            transform-origin: left
+        }
+
+        .project-card:hover {
+            transform: translateY(-6px);
+            border-color: rgba(16, 185, 129, .25);
+            background: rgba(16, 185, 129, .04);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .4)
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1)
+        }
+
+        .card-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-bottom: 1rem
+        }
+
+        .card-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(16, 185, 129, .2), rgba(96, 165, 250, .2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            flex-shrink: 0
+        }
+
+        .card-badges {
+            display: flex;
+            gap: .4rem;
+            flex-wrap: wrap
+        }
+
+        .badge-live {
+            padding: .25rem .6rem;
+            background: rgba(16, 185, 129, .15);
+            border: 1px solid rgba(16, 185, 129, .3);
+            border-radius: 100px;
+            font-size: .7rem;
+            color: var(--green);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: .3rem
+        }
+
+        .badge-live::before {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 2s infinite
+        }
+
+        .card-title {
+            font-size: 1.15rem;
+            font-weight: 700;
+            margin-bottom: .6rem
+        }
+
+        .card-desc {
+            font-size: .875rem;
+            color: var(--muted);
+            line-height: 1.6;
+            margin-bottom: 1rem
+        }
+
+        .tech-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-bottom: 1.2rem
+        }
+
+        .tech-pill {
+            padding: .25rem .65rem;
+            background: rgba(96, 165, 250, .1);
+            border: 1px solid rgba(96, 165, 250, .2);
+            border-radius: 100px;
+            font-size: .7rem;
+            color: var(--blue);
+            font-family: 'JetBrains Mono', monospace
+        }
+
+        .feature-bullets {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: .4rem;
+            margin-bottom: 1.5rem
+        }
+
+        .feature-bullets li {
+            font-size: .8rem;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: .5rem
+        }
+
+        .feature-bullets li::before {
+            content: '▸';
+            color: var(--green);
+            flex-shrink: 0
+        }
+
+        .card-links {
+            display: flex;
+            gap: .75rem
+        }
+
+        .link-demo {
+            padding: .5rem 1.2rem;
+            background: linear-gradient(135deg, var(--green), var(--green-dark));
+            color: #000;
+            font-weight: 700;
+            border-radius: 8px;
             text-decoration: none;
-            transition: color 0.3s;
+            font-size: .8rem;
+            transition: .2s
         }
 
-        .footer-links a:hover {
-            color: var(--primary);
+        .link-demo:hover {
+            transform: scale(1.04)
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.5rem;
+        .link-gh {
+            padding: .5rem 1.2rem;
+            border: 1px solid var(--glass-border);
+            color: var(--text);
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: .8rem;
+            transition: .2s
+        }
+
+        .link-gh:hover {
+            border-color: var(--muted);
+            color: var(--text)
+        }
+
+        /* ── Architecture ── */
+        .arch-wrap {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            overflow-x: auto
+        }
+
+        .arch-diagram {
+            display: flex;
+            gap: 2rem;
+            min-width: 800px;
+            align-items: stretch
+        }
+
+        .arch-col {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem
+        }
+
+        .arch-col h4 {
+            font-size: .75rem;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--muted);
+            margin-bottom: .5rem;
+            text-align: center
+        }
+
+        .arch-node {
+            padding: 1rem;
+            background: var(--bg2);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            font-size: .8rem;
+            text-align: center;
+            transition: .3s;
+            cursor: default
+        }
+
+        .arch-node:hover {
+            border-color: var(--green);
+            box-shadow: 0 0 20px var(--green-glow)
+        }
+
+        .arch-node.green {
+            border-color: rgba(16, 185, 129, .3);
+            background: rgba(16, 185, 129, .05)
+        }
+
+        .arch-node.blue {
+            border-color: rgba(96, 165, 250, .3);
+            background: rgba(96, 165, 250, .05)
+        }
+
+        .arch-label {
+            font-size: .7rem;
+            color: var(--muted);
+            margin-top: .3rem
+        }
+
+        .arch-arrow {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--muted);
+            flex-shrink: 0
+        }
+
+        /* ── Contact ── */
+        .contact-card {
+            background: linear-gradient(135deg, rgba(16, 185, 129, .08), rgba(96, 165, 250, .08));
+            border: 1px solid rgba(16, 185, 129, .2);
+            border-radius: 24px;
+            padding: 4rem;
+            text-align: center
+        }
+
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+            padding: .75rem 1.5rem;
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            color: var(--text);
+            text-decoration: none;
+            font-size: .9rem;
+            font-weight: 500;
+            transition: .3s
+        }
+
+        .contact-link:hover {
+            border-color: var(--green);
+            color: var(--green);
+            transform: translateY(-3px)
+        }
+
+        /* ── Footer ── */
+        footer {
+            border-top: 1px solid var(--glass-border);
+            padding: 2rem;
+            text-align: center;
+            color: var(--muted);
+            font-size: .8rem;
+            position: relative;
+            z-index: 1
+        }
+
+        /* ── Animations ── */
+        @keyframes pulse {
+
+            0%,
+            100% {
+                opacity: 1;
+                transform: scale(1)
             }
 
-            .section-title {
-                font-size: 2rem;
+            50% {
+                opacity: .7;
+                transform: scale(1.3)
+            }
+        }
+
+        @keyframes gradShift {
+
+            0%,
+            100% {
+                background-position: 0% 50%
             }
 
-            .grid-2,
-            .grid-4 {
-                grid-template-columns: 1fr;
+            50% {
+                background-position: 100% 50%
+            }
+        }
+
+        @keyframes blink {
+
+            0%,
+            100% {
+                border-color: var(--green)
+            }
+
+            50% {
+                border-color: transparent
+            }
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0)
+            }
+
+            50% {
+                transform: translateX(-50%) translateY(-8px)
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity .7s ease, transform .7s ease
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(max-width:768px) {
+            .about-grid {
+                grid-template-columns: 1fr
             }
 
             .nav-links {
-                display: none;
+                gap: 1rem
+            }
+
+            .hero-stats {
+                gap: 1.5rem
+            }
+
+            .arch-diagram {
+                flex-direction: column;
+                min-width: unset
+            }
+
+            .arch-arrow {
+                transform: rotate(90deg)
             }
         }
     </style>
 </head>
 
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="#" class="logo">AgriTech</a>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <nav id="main-nav">
+        <div class="nav-inner">
+            <a href="#" class="logo">🌿 AgriTech</a>
             <ul class="nav-links">
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#stats">Impact</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="/jp" style="font-weight: 700;">JP 🇯🇵</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#impact" class="nav-link">Impact</a></li>
+                <li><a href="#architecture" class="nav-link">Architecture</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><a href="/jp" class="lang-btn">JP 🇯🇵</a></li>
             </ul>
         </div>
     </nav>
 
+    <!-- HERO -->
     <section class="hero">
-        <h1>AgriTech Portfolio</h1>
-        <p class="hero-subtitle">Andriyanto, BScE, S.E</p>
-        <p class="hero-description">
-            AI-Powered Agricultural Solutions | Smart Farming Applications | Digital Agriculture Innovation
-        </p>
-        <div style="margin: 2rem 0;">
-            <span class="badge">5 Applications</span>
-            <span class="badge">AI & ML Powered</span>
-            <span class="badge">Production Ready</span>
-            <span class="badge">20+ Modules</span>
+        <div>
+            <div class="hero-tag"><span></span> Open to Global Remote Opportunities</div>
+            <h1 class="headline">
+                <span class="grad-text">AgriTech Portfolio</span><br>
+                <span style="font-size:.6em;color:var(--text);">Andriyanto, BScE, S.E</span>
+            </h1>
+            <p class="hero-sub">
+                <span id="typed-text"></span>
+            </p>
+            <div class="hero-ctas">
+                <a href="#projects" class="btn-primary">View Projects</a>
+                <a href="https://mirai39.streamlit.app/" target="_blank" class="btn-ghost">Live Demo ↗</a>
+            </div>
+            <div class="hero-stats">
+                <div class="h-stat">
+                    <div class="num" data-target="5">0</div>
+                    <div class="lbl">Live Apps</div>
+                </div>
+                <div class="h-stat">
+                    <div class="num" data-target="60">0</div>
+                    <div class="lbl">AI Modules</div>
+                </div>
+                <div class="h-stat">
+                    <div class="num" data-target="15">0</div>
+                    <div class="lbl">% Yield Increase</div>
+                </div>
+                <div class="h-stat">
+                    <div class="num" data-target="30">0</div>
+                    <div class="lbl">% Cost Reduction</div>
+                </div>
+            </div>
+            <div class="scroll-hint">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 5v14M5 12l7 7 7-7" />
+                </svg>
+                scroll
+            </div>
         </div>
     </section>
 
-    <div class="container">
-        <section class="section" id="about">
-            <h2 class="section-title">About Me</h2>
-            <p class="section-subtitle">AI Product Engineer | AgriTech Innovator | Full-Stack Developer</p>
-
-            <div class="grid grid-2">
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Professional Background
-                    </h3>
-                    <p style="color: var(--gray-700); line-height: 1.8; margin-bottom: 1rem;">
-                        I'm <strong>Andriyanto, BScE, S.E</strong>, an AI Product Engineer specializing in agricultural
-                        technology solutions.
-                        With dual degrees in Computer Engineering and Economics, I bring a unique blend of technical
-                        expertise
-                        and business acumen to solve real-world agricultural challenges.
-                    </p>
-                    <p style="color: var(--gray-700); line-height: 1.8; margin-bottom: 1rem;">
-                        My journey in AgriTech began with a simple question: <em>"How can we use AI to help Indonesian
-                            farmers
-                            increase productivity and profitability?"</em> This led to the creation of the
-                        <strong>AgriSensa ecosystem</strong>
-                        – a comprehensive platform serving thousands of farmers across Indonesia.
-                    </p>
-                    <p style="color: var(--gray-700); line-height: 1.8;">
-                        Currently based in Japan, I combine international best practices with local Indonesian
-                        agricultural
-                        knowledge to create solutions that are both technologically advanced and culturally relevant.
-                    </p>
+    <!-- ABOUT -->
+    <section id="about">
+        <div class="container">
+            <div class="section-tag">About</div>
+            <h2 class="section-title">AI Engineer meets <span class="grad-text">Agriculture</span></h2>
+            <div class="about-grid reveal">
+                <div class="about-text">
+                    <p>I am an <strong>AI Product Engineer</strong> specialized in building end-to-end agricultural
+                        intelligence systems. Based in Japan, I blend technical depth with domain expertise to create
+                        platforms that transform how farmers make decisions.</p>
+                    <blockquote>"I don't just build models. I build platforms that transform how farmers make
+                        decisions."</blockquote>
+                    <p>My AgriSensa ecosystem serves thousands of farmers across Indonesia with production-grade AI —
+                        from disease diagnosis to market price prediction.</p>
+                    <p style="margin-top:1rem;color:var(--muted);font-size:.875rem;">🎓 BScE (Computer Engineering) ·
+                        S.E (Economics) · Japan-based · Remote Ready</p>
                 </div>
-
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Core Expertise</h3>
-                    <div style="display: grid; gap: 1rem;">
-                        <div>
-                            <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">AI & Machine Learning</h4>
-                            <ul class="feature-list" style="margin-left: 0;">
-                                <li>Multi-modal AI systems (LLM + Computer Vision + Predictive ML)</li>
-                                <li>Production ML deployment with 99%+ uptime</li>
-                                <li>Explainable AI (XAI) with SHAP for farmer trust</li>
-                                <li>AutoML with PyCaret for rapid prototyping</li>
-                            </ul>
+                <div class="skill-list">
+                    <div class="skill-item">
+                        <label>AI & Machine Learning <span>92%</span></label>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="92"></div>
                         </div>
-                        <div>
-                            <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">Full-Stack Development</h4>
-                            <ul class="feature-list" style="margin-left: 0;">
-                                <li>Python (Streamlit, Flask, FastAPI)</li>
-                                <li>Modern web technologies (HTML5, CSS3, JavaScript)</li>
-                                <li>Cloud deployment (Streamlit Cloud, Vercel, Hugging Face)</li>
-                                <li>Database design (SQLAlchemy, PostgreSQL)</li>
-                            </ul>
+                    </div>
+                    <div class="skill-item">
+                        <label>Full-Stack Development <span>85%</span></label>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="85"></div>
                         </div>
-                        <div>
-                            <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">Domain Knowledge</h4>
-                            <ul class="feature-list" style="margin-left: 0;">
-                                <li>Precision agriculture & crop management</li>
-                                <li>Agricultural economics & market analysis</li>
-                                <li>Sustainable farming practices</li>
-                                <li>Japanese agricultural methodologies</li>
-                            </ul>
+                    </div>
+                    <div class="skill-item">
+                        <label>Data Analysis & GIS <span>88%</span></label>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="88"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Agricultural Domain Knowledge <span>95%</span></label>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="95"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <label>Cloud & DevOps <span>78%</span></label>
+                        <div class="skill-bar">
+                            <div class="skill-fill" data-width="78"></div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div class="grid grid-2" style="margin-top: 2rem;">
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Key Achievements</h3>
-                    <ul class="feature-list" style="margin-left: 0;">
-                        <li><strong>5 Production Applications</strong> - Deployed and serving real farmers</li>
-                        <li><strong>60+ AI Modules</strong> - Comprehensive agricultural solutions</li>
-                        <li><strong>Multi-Modal AI Integration</strong> - LLM (Gemini) + CV (Roboflow) + ML
-                            (scikit-learn)</li>
-                        <li><strong>99.5% Uptime</strong> - Production-grade reliability</li>
-                        <li><strong>Real-Time APIs</strong> - Weather, market prices, soil data integration</li>
-                        <li><strong>Hub & Spoke Architecture</strong> - Scalable microservices design</li>
-                        <li><strong>Open Source Contributor</strong> - All projects available on GitHub</li>
-                    </ul>
-                </div>
-
-                <div class="card">
-                    <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">What Drives Me</h3>
-                    <p style="color: var(--gray-700); line-height: 1.8; margin-bottom: 1rem;">
-                        <strong>Mission:</strong> Democratize agricultural technology for smallholder farmers in
-                        Indonesia
-                        and Southeast Asia. I believe that every farmer, regardless of their resources, deserves access
-                        to
-                        world-class AI-powered tools.
-                    </p>
-                    <p style="color: var(--gray-700); line-height: 1.8; margin-bottom: 1rem;">
-                        <strong>Vision:</strong> Build an integrated AgriTech ecosystem that combines:
-                    </p>
-                    <ul class="feature-list" style="margin-left: 0;">
-                        <li>Cutting-edge AI/ML technology</li>
-                        <li>Practical, farmer-friendly interfaces</li>
-                        <li>Sustainable agricultural practices</li>
-                        <li>Economic empowerment for rural communities</li>
-                    </ul>
-                    <p style="color: var(--gray-700); line-height: 1.8; margin-top: 1rem;">
-                        <strong>Impact:</strong> My applications help farmers make data-driven decisions on crop
-                        selection,
-                        pest management, fertilizer application, and market timing – ultimately increasing yields by
-                        10-15%
-                        and reducing costs by 20-30%.
-                    </p>
-                </div>
-            </div>
-
-            <div class="card"
-                style="margin-top: 2rem; background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%); border-left: 4px solid var(--primary);">
-                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Why Hire Me for Global Roles?
-                </h3>
-                <div class="grid grid-2">
-                    <div>
-                        <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">Global Readiness 🌏</h4>
-                        <ul class="feature-list" style="margin-left: 0;">
-                            <li><strong>Japan-Based Professional:</strong> Adapted to high-standard work ethics and
-                                Asia-Pacific timezones.</li>
-                            <li><strong>Bilingual Communication:</strong> Fluent technical communication in English and
-                                Indonesian.</li>
-                            <li><strong>Remote & Asynchronous:</strong> Proven track record in delivering results
-                                independently in distributed teams.</li>
-                        </ul>
+    <!-- IMPACT -->
+    <section id="impact">
+        <div class="container">
+            <div class="stats-bg reveal">
+                <div class="section-tag">Impact</div>
+                <h2 class="section-title">Measurable <span class="grad-text">Business Impact</span></h2>
+                <p style="color:var(--muted)">Every feature maps to real-world value for farmers across Indonesia</p>
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-num" data-target="15">0</span>
+                        <div class="stat-lbl">% Yield Increase</div>
                     </div>
-                    <div>
-                        <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">The "Bridge" Engineer 🌉</h4>
-                        <ul class="feature-list" style="margin-left: 0;">
-                            <li><strong>Tech to Business:</strong> Translating complex AI capabilities into clear ROI
-                                and business value.</li>
-                            <li><strong>Concept to Production:</strong> Full-cycle ability from whiteboarding
-                                architecture to deploying scalable code.</li>
-                            <li><strong>Data to Decision:</strong> Turning raw agricultural data into actionable
-                                strategic insights.</li>
-                        </ul>
+                    <div class="stat-card"><span class="stat-num" data-target="30">0</span>
+                        <div class="stat-lbl">% Cost Reduction</div>
+                    </div>
+                    <div class="stat-card"><span class="stat-num" data-target="60">0</span>
+                        <div class="stat-lbl">AI Modules</div>
+                    </div>
+                    <div class="stat-card"><span class="stat-num" data-target="5">0</span>
+                        <div class="stat-lbl">Live Applications</div>
+                    </div>
+                    <div class="stat-card"><span class="stat-num" data-target="99">0</span>
+                        <div class="stat-lbl">% Uptime</div>
+                    </div>
+                    <div class="stat-card"><span class="stat-num" data-target="500">0</span>
+                        <div class="stat-lbl">Research Hours</div>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
 
-            <!-- Tech Philosophy Section -->
-            <div class="card" style="margin-top: 2rem;">
-                <h3 style="color: var(--primary); margin-bottom: 1rem; font-size: 1.5rem;">Tech Philosophy</h3>
-                <div class="grid grid-3">
-                    <div style="padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 8px;">
-                        <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">🧩 Scalable Simplicity</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-700);">Building systems that are complex enough
-                            to solve the problem, but simple enough to maintain and scale without debt.</p>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 8px;">
-                        <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">👤 User-Obsessed</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-700);">Technology must serve the human (farmer).
-                            Interfaces should be intuitive, accessible, and forgiving.</p>
-                    </div>
-                    <div style="padding: 1rem; background: rgba(255,255,255,0.5); border-radius: 8px;">
-                        <h4 style="color: var(--gray-800); margin-bottom: 0.5rem;">💡 ROI-Driven</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-700);">Every line of code should contribute to
-                            value creation—whether it's yield increase or cost reduction.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="section" id="stats">
-            <h2 class="section-title">Portfolio Impact</h2>
-            <p class="section-subtitle">Comprehensive agricultural solutions serving real farmers</p>
-            <div class="grid grid-4">
-                <div class="card stat-card">
-                    <div class="stat-number">15%</div>
-                    <div class="stat-label">Yield Increase</div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-number">30%</div>
-                    <div class="stat-label">Cost Reduction</div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-number">60+</div>
-                    <div class="stat-label">AI Modules</div>
-                </div>
-                <div class="card stat-card">
-                    <div class="stat-number">99.5%</div>
-                    <div class="stat-label">System Uptime</div>
-                </div>
-            </div>
-        </section>
+    <!-- PROJECTS -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-tag">Projects</div>
+            <h2 class="section-title">Featured <span class="grad-text">Applications</span></h2>
+            <p class="section-desc">5 production-grade AgriTech solutions — all live and actively used by farmers</p>
 
-        <section class="section" id="projects">
-            <h2 class="section-title">Featured Projects</h2>
-            <p class="section-subtitle">Production-grade agricultural applications</p>
+            <div class="projects-grid">
 
-            <div class="grid grid-2">
-                <!-- AgriSensa Platform -->
-                <div class="card project-card">
-                    <div class="project-header">
-                        <div class="project-icon"></div>
-                        <h3 class="project-title">AgriSensa Intelligence Platform</h3>
+                <div class="project-card reveal">
+                    <div class="card-top">
+                        <div class="card-icon">🧠</div>
+                        <div class="card-badges"><span class="badge-live">Live</span></div>
                     </div>
-                    <p class="project-description">
-                        Comprehensive agricultural intelligence platform featuring 20+ specialized modules for precision
-                        farming, crop management, and agricultural decision support. Built with modern glassmorphism UI
-                        and powered by AI.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">AI/ML</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">Folium</span>
-                        <span class="tech-tag">GIS</span>
+                    <div class="card-title">AgriSensa Intelligence Platform</div>
+                    <div class="card-desc">Flagship AI platform with 20+ specialized modules for precision farming, crop
+                        management & decision support. Glassmorphism UI powered by Gemini AI.</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Streamlit</span><span class="tech-pill">Gemini AI</span><span
+                            class="tech-pill">Roboflow</span><span class="tech-pill">Folium GIS</span><span
+                            class="tech-pill">Plotly</span>
                     </div>
-                    <ul class="feature-list">
-                        <li>AI-Powered Plant Doctor with disease diagnosis</li>
+                    <ul class="feature-bullets">
+                        <li>Multi-modal AI Plant Doctor (image + text diagnosis)</li>
                         <li>GIS Intelligence & interactive soil mapping</li>
-                        <li>Smart Climate & weather prediction</li>
-                        <li>NPK Analysis & fertilizer calculator</li>
-                        <li>Botanical pesticide database</li>
+                        <li>Smart climate & 7-day weather prediction</li>
+                        <li>NPK analysis & fertilizer calculator</li>
+                        <li>Botanical pesticide encyclopedia</li>
                     </ul>
-                    <div class="project-links">
-                        <a href="https://mirai39.streamlit.app/" class="btn btn-primary" target="_blank">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/yandri918/streamlit_terbaru" class="btn btn-secondary"
-                            target="_blank">
-                            GitHub
-                        </a>
+                    <div class="card-links">
+                        <a href="https://mirai39.streamlit.app/" target="_blank" class="link-demo">Live Demo ↗</a>
+                        <a href="https://github.com/yandri918/streamlit_terbaru" target="_blank"
+                            class="link-gh">GitHub</a>
                     </div>
                 </div>
 
-                <!-- Budidaya Cabai -->
-                <div class="card project-card">
-                    <div class="project-header">
-                        <div class="project-icon"></div>
-                        <h3 class="project-title">Budidaya Cabai Platform</h3>
+                <div class="project-card reveal">
+                    <div class="card-top">
+                        <div class="card-icon">🌶️</div>
+                        <div class="card-badges"><span class="badge-live">Live</span></div>
                     </div>
-                    <p class="project-description">
-                        Comprehensive chili cultivation platform with industry-standard features. Includes ML-based
-                        price forecasting, 6 cultivation scenarios (Organic/Chemical × Open/Greenhouse), complete
-                        SOPs, and business analytics.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Prophet</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">Pandas</span>
+                    <div class="card-title">Budidaya Cabai Platform</div>
+                    <div class="card-desc">End-to-end chili farming management system with AI advisory, ML price
+                        forecasting, and comprehensive cultivation guides.</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Streamlit</span><span class="tech-pill">Prophet</span><span
+                            class="tech-pill">Plotly</span><span class="tech-pill">Pandas</span>
                     </div>
-                    <div class="feature-grid"
-                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; margin-bottom: 1rem;">
-                        <div>
-                            <h4
-                                style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem;">
-                                Business Intelligence</h4>
-                            <ul class="feature-list" style="margin-left: 0; font-size: 0.85rem;">
-                                <li>RAB Calculator & Budgeting</li>
-                                <li>Business Analysis & ROI</li>
-                                <li>Price Forecasting (ML)</li>
-                                <li>Harvest Reporting</li>
-                                <li>Advanced Analytics Hub</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4
-                                style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem;">
-                                Cultivation Mgmt</h4>
-                            <ul class="feature-list" style="margin-left: 0; font-size: 0.85rem;">
-                                <li>Comprehensive SOPs</li>
-                                <li>Planting Calendar</li>
-                                <li>Cultivation Journal</li>
-                                <li>Growth Monitoring</li>
-                                <li>Quality Control</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4
-                                style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem;">
-                                Precision Tech</h4>
-                            <ul class="feature-list" style="margin-left: 0; font-size: 0.85rem;">
-                                <li>Fertilizer Calculator</li>
-                                <li>Spraying Strategy</li>
-                                <li>Pest & Disease DB</li>
-                                <li>Weather Monitoring</li>
-                                <li>Chili Variety Database</li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4
-                                style="color: var(--primary); font-size: 0.9rem; margin-bottom: 0.5rem; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 0.2rem;">
-                                AI & Support</h4>
-                            <ul class="feature-list" style="margin-left: 0; font-size: 0.85rem;">
-                                <li>AI Advisory System</li>
-                                <li>AI Disease Detection</li>
-                                <li>Consultation Forum</li>
-                                <li>Data Management</li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="project-links">
-                        <a href="https://budidayacabe.streamlit.app/" class="btn btn-primary" target="_blank">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/yandri918/budidaya_cabe_streamlit" class="btn btn-secondary"
-                            target="_blank">
-                            GitHub
-                        </a>
+                    <ul class="feature-bullets">
+                        <li>RAB budget calculator & financial planning</li>
+                        <li>Market price forecasting (ML)</li>
+                        <li>AI advisory system</li>
+                        <li>SOP & cultivation journal</li>
+                    </ul>
+                    <div class="card-links">
+                        <a href="https://budidayacabe.streamlit.app/" target="_blank" class="link-demo">Live Demo ↗</a>
+                        <a href="https://github.com/yandri918/budidaya_cabe_streamlit" target="_blank"
+                            class="link-gh">GitHub</a>
                     </div>
                 </div>
 
-                <!-- Budidaya Krisan -->
-                <div class="card project-card">
-                    <div class="project-header">
-                        <div class="project-icon"></div>
-                        <h3 class="project-title">Budidaya Krisan AI System</h3>
+                <div class="project-card reveal">
+                    <div class="card-top">
+                        <div class="card-icon">🌸</div>
+                        <div class="card-badges"><span class="badge-live">Live</span></div>
                     </div>
-                    <p class="project-description">
-                        AI-powered Japanese spray chrysanthemum cultivation system with machine learning for growth
-                        monitoring, anomaly detection, and health scoring. Features real-time weather integration
-                        and predictive analytics.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">scikit-learn</span>
-                        <span class="tech-tag">Altair</span>
-                        <span class="tech-tag">Open-Meteo API</span>
+                    <div class="card-title">Budidaya Krisan AI System</div>
+                    <div class="card-desc">AI-powered Japanese spray chrysanthemum cultivation with ML growth
+                        monitoring, anomaly detection, and real-time weather integration.</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Streamlit</span><span class="tech-pill">scikit-learn</span><span
+                            class="tech-pill">Altair</span><span class="tech-pill">Open-Meteo</span>
                     </div>
-                    <ul class="feature-list">
-                        <li>AI-powered growth prediction (4-8 weeks)</li>
+                    <ul class="feature-bullets">
+                        <li>AI growth prediction (4–8 weeks ahead)</li>
                         <li>Anomaly detection with Isolation Forest</li>
-                        <li>Multi-factor health scoring (0-100)</li>
-                        <li>Smart recommendations engine</li>
+                        <li>Multi-factor health scoring (0–100)</li>
                         <li>Photoperiod calculator for flowering</li>
-                        <li>Winter temperature management (Dambo)</li>
+                        <li>Winter temperature management</li>
                     </ul>
-                    <div class="project-links">
-                        <a href="https://budidayakrisan.streamlit.app/" class="btn btn-primary" target="_blank">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/yandri918/budidaya_krisan" class="btn btn-secondary"
-                            target="_blank">
-                            GitHub
-                        </a>
+                    <div class="card-links">
+                        <a href="https://budidayakrisan.streamlit.app/" target="_blank" class="link-demo">Live Demo
+                            ↗</a>
+                        <a href="https://github.com/yandri918/budidaya_krisan" target="_blank"
+                            class="link-gh">GitHub</a>
                     </div>
                 </div>
 
-                <!-- Budidaya Padi -->
-                <div class="card project-card">
-                    <div class="project-header">
-                        <div class="project-icon"></div>
-                        <h3 class="project-title">Budidaya Padi Management</h3>
+                <div class="project-card reveal">
+                    <div class="card-top">
+                        <div class="card-icon">🌾</div>
+                        <div class="card-badges"><span class="badge-live">Live</span></div>
                     </div>
-                    <p class="project-description">
-                        Integrated rice farming management system with PyCaret AutoML, advanced analytics, and
-                        comprehensive cultivation guides. Supports 20+ Indonesian rice varieties with specialized
-                        modules for water management and pest control.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">PyCaret</span>
-                        <span class="tech-tag">Altair</span>
-                        <span class="tech-tag">Statsmodels</span>
+                    <div class="card-title">Budidaya Padi Management</div>
+                    <div class="card-desc">Integrated rice farming system with PyCaret AutoML, advanced statistical
+                        analysis, and specialized water/pest control modules.</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Streamlit</span><span class="tech-pill">PyCaret</span><span
+                            class="tech-pill">Statsmodels</span><span class="tech-pill">Altair</span>
                     </div>
-                    <ul class="feature-list">
+                    <ul class="feature-bullets">
                         <li>PyCaret AutoML for yield prediction</li>
                         <li>20+ Indonesian rice varieties database</li>
                         <li>AWD (Alternate Wetting & Drying) calculator</li>
                         <li>Statistical analysis (ANOVA, RCBD)</li>
-                        <li>Real-time weather monitoring</li>
                         <li>Market price prediction</li>
                     </ul>
-                    <div class="project-links">
-                        <a href="https://budidayapadi.streamlit.app/" class="btn btn-primary" target="_blank">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/yandri918/budidaya_padi" class="btn btn-secondary" target="_blank">
-                            GitHub
-                        </a>
+                    <div class="card-links">
+                        <a href="https://budidayapadi.streamlit.app/" target="_blank" class="link-demo">Live Demo ↗</a>
+                        <a href="https://github.com/yandri918/budidaya_padi" target="_blank" class="link-gh">GitHub</a>
                     </div>
                 </div>
 
-                <!-- Bank Sampah Terpadu -->
-                <div class="card project-card">
-                    <div class="project-header">
-                        <div class="project-icon"></div>
-                        <h3 class="project-title">Bank Sampah Terpadu</h3>
+                <div class="project-card reveal">
+                    <div class="card-top">
+                        <div class="card-icon">♻️</div>
+                        <div class="card-badges"><span class="badge-live">Live</span></div>
                     </div>
-                    <p class="project-description">
-                        Integrated waste management system based on circular economy principles, adapting Japanese
-                        waste sorting standards. Transforms waste perception into "Green Gold" with economic value
-                        calculations and agricultural integration.
-                    </p>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Streamlit</span>
-                        <span class="tech-tag">Plotly</span>
-                        <span class="tech-tag">Pandas</span>
+                    <div class="card-title">Bank Sampah Terpadu</div>
+                    <div class="card-desc">Circular economy waste management system adapting Japanese sorting standards.
+                        Transforms waste into "Green Gold" with economic integration.</div>
+                    <div class="tech-pills">
+                        <span class="tech-pill">Streamlit</span><span class="tech-pill">Plotly</span><span
+                            class="tech-pill">Pandas</span>
                     </div>
-                    <ul class="feature-list">
-                        <li>Japanese waste sorting standards (Moeru/Shigen/Moenai)</li>
-                        <li>"Trash to Cash" calculator with precision pricing</li>
+                    <ul class="feature-bullets">
+                        <li>Japanese waste sorting (moeru/shigen/moenai)</li>
+                        <li>"Trash to Cash" value calculator</li>
                         <li>Real-time monitoring dashboard</li>
-                        <li>Organic waste to compost/maggot feed conversion</li>
+                        <li>Organic → compost / maggot feed conversion</li>
                         <li>AgriSensa ecosystem integration</li>
                     </ul>
-                    <div class="project-links">
-                        <a href="https://bank-sampah-terpadu.streamlit.app/" class="btn btn-primary" target="_blank">
-                            Live Demo
-                        </a>
-                        <a href="https://github.com/yandri918/bank-sampah-terpadu" class="btn btn-secondary"
-                            target="_blank">
-                            GitHub
-                        </a>
+                    <div class="card-links">
+                        <a href="https://bank-sampah-terpadu.streamlit.app/" target="_blank" class="link-demo">Live Demo
+                            ↗</a>
+                        <a href="https://github.com/yandri918/bank-sampah-terpadu" target="_blank"
+                            class="link-gh">GitHub</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ARCHITECTURE -->
+    <section id="architecture">
+        <div class="container">
+            <div class="section-tag">Architecture</div>
+            <h2 class="section-title">Platform <span class="grad-text">Architecture</span></h2>
+            <p class="section-desc">End-to-end system design — from data to user decisions</p>
+            <div class="arch-wrap reveal">
+                <div class="arch-diagram">
+                    <div class="arch-col">
+                        <h4>👥 Users</h4>
+                        <div class="arch-node green">🌾 Farmer<div class="arch-label">End User</div>
+                        </div>
+                        <div class="arch-node">💼 HR / Recruiter<div class="arch-label">Portfolio Viewer</div>
+                        </div>
+                        <div class="arch-node">💻 Developer<div class="arch-label">Code Reviewer</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-col">
+                        <h4>🌐 Portfolio Hub</h4>
+                        <div class="arch-node green">agritech-portofolio.vercel.app<div class="arch-label">EN Version
+                            </div>
+                        </div>
+                        <div class="arch-node green">agritech-portofolio.vercel.app/jp<div class="arch-label">JP Version
+                            </div>
+                        </div>
+                        <div class="arch-node blue">Vercel Edge Network<div class="arch-label">CDN + Rewrites</div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-col">
+                        <h4>🌿 AgriSensa Apps</h4>
+                        <div class="arch-node green">AgriSensa (20+ modules)<div class="arch-label">
+                                mirai39.streamlit.app</div>
+                        </div>
+                        <div class="arch-node">Budidaya Cabai<div class="arch-label">budidayacabe.streamlit.app</div>
+                        </div>
+                        <div class="arch-node">Budidaya Krisan<div class="arch-label">budidayakrisan.streamlit.app</div>
+                        </div>
+                        <div class="arch-node">Budidaya Padi<div class="arch-label">budidayapadi.streamlit.app</div>
+                        </div>
+                        <div class="arch-node">Bank Sampah<div class="arch-label">bank-sampah-terpadu.streamlit.app
+                            </div>
+                        </div>
+                    </div>
+                    <div class="arch-arrow">→</div>
+                    <div class="arch-col">
+                        <h4>🧠 AI Core</h4>
+                        <div class="arch-node blue">Gemini AI<div class="arch-label">Multimodal LLM</div>
+                        </div>
+                        <div class="arch-node blue">Roboflow CV<div class="arch-label">Computer Vision</div>
+                        </div>
+                        <div class="arch-node blue">scikit-learn<div class="arch-label">Classic ML</div>
+                        </div>
+                        <div class="arch-node blue">PyCaret<div class="arch-label">AutoML</div>
+                        </div>
+                        <div class="arch-node blue">Prophet<div class="arch-label">Time Series</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-    </div>
-
-    <footer id="contact">
-        <h2 style="font-family: 'Poppins', sans-serif; margin-bottom: 1rem;">Get In Touch</h2>
-        <p style="color: #94a3b8; margin-bottom: 2rem;">
-            AgriTech Developer | AI & Machine Learning Engineer | Open to Opportunities
-        </p>
-        <div class="footer-links">
-            <a href="https://github.com/yandri918" target="_blank">GitHub</a>
-            <a href="https://www.linkedin.com/in/andriyanto-na-147492157" target="_blank">LinkedIn</a>
-            <a href="mailto:yandri918@gmail.com">Email</a>
-            <a href="https://mirai39.streamlit.app/" target="_blank">AgriSensa Platform</a>
         </div>
-        <p style="color: #64748b; margin-top: 2rem;">
-            &copy; 2026 Andriyanto, BScE, S.E. Built with ❤️ for Indonesian Farmers
-        </p>
-        <p style="color: #475569; margin-top: 0.5rem; font-size: 0.9rem;">
-            AgriTech Innovation | AI-Powered Agriculture | Smart Farming Solutions
-        </p>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+        <div class="container">
+            <div class="contact-card reveal">
+                <div class="section-tag">Contact</div>
+                <h2 class="section-title">Let's Build Something <span class="grad-text">Meaningful</span></h2>
+                <p style="color:var(--muted);max-width:500px;margin:1rem auto;line-height:1.7">Open to global remote
+                    roles as AI Engineer, AgriTech Developer, or Full-Stack Developer. Japan-based, APAC timezone.</p>
+                <div class="contact-links">
+                    <a href="https://www.linkedin.com/in/andriyanto-na-147492157" target="_blank"
+                        class="contact-link">💼 LinkedIn</a>
+                    <a href="https://github.com/yandri918" target="_blank" class="contact-link">💻 GitHub</a>
+                    <a href="mailto:yandri918@gmail.com" class="contact-link">✉️ Email</a>
+                    <a href="https://mirai39.streamlit.app/" target="_blank" class="contact-link">🌿 AgriSensa</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2026 Andriyanto, BScE, S.E · Built with ❤️ for Indonesian Farmers · <a href="/jp"
+                style="color:var(--green);text-decoration:none">日本語版はこちら →</a></p>
     </footer>
+
+    <script>
+        // ── Canvas Particles ──
+        const canvas = document.getElementById('bg-canvas');
+        const ctx = canvas.getContext('2d');
+        let W, H, particles = [];
+        function resize() { W = canvas.width = innerWidth; H = canvas.height = innerHeight }
+        resize(); window.addEventListener('resize', resize);
+
+        class Particle {
+            constructor() { this.reset() }
+            reset() {
+                this.x = Math.random() * W; this.y = Math.random() * H;
+                this.r = Math.random() * 1.5 + .3;
+                this.vx = (Math.random() - .5) * .3; this.vy = (Math.random() - .5) * .3;
+                this.a = Math.random() * .6 + .1;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
+            }
+            draw() {
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(16,185,129,${this.a})`; ctx.fill();
+            }
+        }
+
+        for (let i = 0; i < 120; i++) particles.push(new Particle());
+
+        function connectParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                for (let j = i + 1; j < particles.length; j++) {
+                    const dx = particles[i].x - particles[j].x, dy = particles[i].y - particles[j].y;
+                    const d = Math.sqrt(dx * dx + dy * dy);
+                    if (d < 120) {
+                        ctx.beginPath();
+                        ctx.moveTo(particles[i].x, particles[i].y);
+                        ctx.lineTo(particles[j].x, particles[j].y);
+                        ctx.strokeStyle = `rgba(16,185,129,${.08 * (1 - d / 120)})`;
+                        ctx.lineWidth = .5; ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        function loop() {
+            ctx.clearRect(0, 0, W, H);
+            particles.forEach(p => { p.update(); p.draw() });
+            connectParticles();
+            requestAnimationFrame(loop);
+        }
+        loop();
+
+        // ── Typing Animation ──
+        const phrases = [
+            'AI-Powered Agricultural Solutions',
+            'Smart Farming Applications',
+            'Digital Agriculture Innovation',
+            'Precision Farming with ML',
+            'End-to-End AgriTech Platforms',
+        ];
+        let pi = 0, ci = 0, del = false;
+        const el = document.getElementById('typed-text');
+        function type() {
+            const cur = phrases[pi];
+            el.textContent = del ? cur.slice(0, ci--) : cur.slice(0, ci++);
+            if (!del && ci > cur.length) { del = true; setTimeout(type, 1500); return }
+            if (del && ci < 0) { del = false; pi = (pi + 1) % phrases.length; ci = 0 }
+            setTimeout(type, del ? 40 : 80);
+        }
+        type();
+
+        // ── Counter Animation ──
+        function animateCounters(els) {
+            els.forEach(el => {
+                const target = +el.dataset.target, suffix = el.innerHTML.includes('%') ? '%' : '+';
+                let cur = 0;
+                const step = target / 60;
+                const timer = setInterval(() => {
+                    cur = Math.min(cur + step, target);
+                    el.textContent = Math.floor(cur);
+                    if (cur >= target) { el.textContent = target; clearInterval(timer) }
+                }, 16);
+            });
+        }
+
+        // ── Scroll Reveal + Counter trigger ──
+        let countersTriggered = false;
+        const revealObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('visible');
+                    // trigger skill bars
+                    e.target.querySelectorAll('.skill-fill').forEach(b => { b.style.width = b.dataset.width + '%' });
+                    revealObs.unobserve(e.target);
+                }
+            });
+        }, { threshold: .1 });
+        document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
+
+        // counter trigger on impact section
+        const statObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting && !countersTriggered) {
+                    countersTriggered = true;
+                    animateCounters(document.querySelectorAll('[data-target]'));
+                }
+            });
+        }, { threshold: .3 });
+        const impactSec = document.getElementById('impact');
+        if (impactSec) statObs.observe(impactSec);
+
+        // hero counters on load
+        setTimeout(() => animateCounters(document.querySelectorAll('.h-stat .num')), 800);
+
+        // ── Active Nav ──
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        const navObs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    const active = document.querySelector(`.nav-link[href="#${e.target.id}"]`);
+                    if (active) active.classList.add('active');
+                }
+            });
+        }, { threshold: .4 });
+        sections.forEach(s => navObs.observe(s));
+    </script>
+
 </body>
 
 </html>
