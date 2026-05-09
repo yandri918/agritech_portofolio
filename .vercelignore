@@ -15,3 +15,7 @@ logs
 instance
 agrisensa.db
 legacy_app.py.bak
+# ML Models and Data
+*.pkl
+*.csv
+yield_prediction_model.pkl

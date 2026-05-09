@@ -6,6 +6,7 @@ from werkzeug.utils import secure_filename
 import cv2
 from inference_sdk import InferenceHTTPClient
 import uuid
+from typing import Dict, Any, Optional, List, Union
 from app.ml_models.model_loader import ModelLoader
 
 # --- MANAJEMEN DATASET ---
@@ -20,7 +21,7 @@ class MLService:
     """
 
     @staticmethod
-    def recommend_crop(data):
+    def recommend_crop(data: Dict[str, Any]) -> Dict[str, Any]:
         """Recommend crop based on soil and environmental conditions."""
         crop_model = ModelLoader.get_model('crop_recommendation')
         if crop_model is None:
@@ -187,7 +188,7 @@ class MLService:
 
 
     @staticmethod
-    def predict_yield(data):
+    def predict_yield(data: Dict[str, Any]) -> float:
         """Predict crop yield based on environmental factors."""
         yield_model = ModelLoader.get_model('yield_prediction')
         if yield_model is None:
@@ -214,7 +215,7 @@ class MLService:
         return round(float(prediction) / 1000, 2) # Konversi dari kg/ha ke ton/ha
 
     @staticmethod
-    def predict_yield_advanced(data):
+    def predict_yield_advanced(data: Dict[str, Any]) -> Dict[str, Any]:
         advanced_model = ModelLoader.get_model('advanced_yield')
         explainer = ModelLoader.get_model('shap_explainer')
         
@@ -283,7 +284,7 @@ class MLService:
         }
 
     @staticmethod
-    def calculate_fertilizer_bags(nutrient_needed, nutrient_amount_kg, fertilizer_type):
+    def calculate_fertilizer_bags(nutrient_needed: str, nutrient_amount_kg: float, fertilizer_type: str) -> Optional[Dict[str, Any]]:
         from app.services.knowledge_service import KnowledgeService
         FERTILIZER_DATA = KnowledgeService.get_fertilizer_data()
         
@@ -305,7 +306,7 @@ class MLService:
 
 
     @staticmethod
-    def generate_yield_plan(commodity=None, target_yield_ton_ha=None):
+    def generate_yield_plan(commodity: Optional[str] = None, target_yield_ton_ha: Optional[Union[float, str]] = None) -> Optional[Dict[str, Any]]:
         """Generate comprehensive plan to achieve target yield with commodity-specific recommendations."""
         from app.data.yield_benchmarks import YieldBenchmarks
         
@@ -608,7 +609,7 @@ class MLService:
 
 
     @staticmethod
-    def predict_success(data):
+    def predict_success(data: Dict[str, Any]) -> Dict[str, Any]:
         """Predict farming success probability."""
         success_model = ModelLoader.get_model('success_model')
         if success_model is None:
