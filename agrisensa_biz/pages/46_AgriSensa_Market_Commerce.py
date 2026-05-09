@@ -555,4 +555,4 @@ with tab_pricing:
     df_sens = pd.DataFrame(sens_data)
     
     # Highlight recommended row logic (simplified for viz)
-    st.dataframe(df_sens.style.applymap(lambda v: 'color: red;' if v == 'RUGI' else 'color: green;', subset=['Status']), use_container_width=True)
+    st.dataframe(df_sens.style.map(lambda v: 'color: red;' if v == 'RUGI' else 'color: green;', subset=['Status']), use_container_width=True)
