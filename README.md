@@ -1,3 +1,13 @@
+---
+title: AgriSensa Intelligence
+emoji: 🛰️
+colorFrom: green
+colorTo: blue
+sdk: streamlit
+sdk_version: 1.32.0
+app_file: agrisensa_streamlit/Home.py
+pinned: false
+---
 # 🛰️ AgriSensa Intelligence Ecosystem v5.0 (Global Standard)
 
 ![Platform Status](https://img.shields.io/badge/Status-Production--Ready-10b981?style=for-the-badge)
