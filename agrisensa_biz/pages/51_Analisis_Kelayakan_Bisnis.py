@@ -115,8 +115,9 @@ with tab1:
     with col_geo2:
         st.markdown("#### 🌦️ Parameter Lingkungan (Live)")
         
+        from typing import Tuple
         @st.cache_data(ttl=3600)
-        def get_enviro_data(lat, lon):
+        def get_enviro_data(lat: float, lon: float) -> Tuple[float, float]:
             try:
                 url_weather = f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={lon}&current_weather=true"
                 r_weather = requests.get(url_weather, timeout=3).json()
@@ -329,7 +330,8 @@ with tab6:
     st.subheader("📊 Laporan Analisis & Simulasi Cerdas")
     
     # --- 1. SCORING ENGINE FUNCTION ---
-    def calculate_raw_metrics(params):
+    from typing import Dict, Any
+    def calculate_raw_metrics(params: Dict[str, Any]) -> Dict[str, float]:
         # Helper to calc score for any biz type
         s = {}
         
